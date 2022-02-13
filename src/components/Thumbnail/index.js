@@ -4,6 +4,10 @@ import colors from '../../constants/colors';
 import styles from './styles';
 
 const Thumbnail = ({item, index}) => {
+  const url = item.images?.preview_webp?.url
+    ? item.images?.preview_webp?.url
+    : item.images?.preview_gif?.url;
+
   const [isLoaded, setLoad] = useState(false);
 
   return (
@@ -11,7 +15,7 @@ const Thumbnail = ({item, index}) => {
       <View
         style={[styles.imageContainer, !isLoaded && styles.loaderContainer]}>
         <Image
-          source={{uri: item.images.preview_webp.url}}
+          source={{uri: url}}
           style={styles.image}
           resizeMode={'cover'}
           onLoadEnd={() => setLoad(true)}
